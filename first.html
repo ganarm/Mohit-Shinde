@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East & West Music Academy | Vocal Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #121212;
+            --background: #ffffff;
+            --text: #333333;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dark-mode {
+            --primary: #9b59b6;
+            --secondary: #2980b9;
+            --accent: #e74c3c;
+            --light: #1a1a1a;
+            --dark: #f5f5f5;
+            --background: #121212;
+            --text: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scrolled {
+            background-color: var(--card-bg);
+            box-shadow: 0 5px 20px var(--shadow);
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-right: 15px;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 3s infinite;
+        }
+
+        .logo::after {
+            content: "♫";
+            position: absolute;
+            animation: rotateNote 8s linear infinite;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text);
+            margin-left: 20px;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background: rgba(0,0,0,0.2);
+            color: var(--accent);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(142, 68, 173, 0.1) 0%, transparent 70%);
+            z-index: -2;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            font-family: 'Dancing Script', cursive;
+            display: block;
+            font-size: 5rem;
+            margin-top: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 20px rgba(142, 68, 173, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            color: white;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            max-width: 600px;
+            z-index: 0;
+            opacity: 0.9;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Floating Notes */
+        .floating-note {
+            position: absolute;
+            font-size: 32px;
+            color: var(--primary);
+            opacity: 0.7;
+            animation: float 8s infinite ease-in-out;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-family: 'Playfair Display', serif;
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 20px auto 0;
+            opacity: 0.8;
+        }
+
+        /* Courses */
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .course-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .course-icon {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-icon::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .course-content {
+            padding: 30px;
+        }
+
+        .course-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .course-content ul {
+            padding-left: 20px;
+            margin: 25px 0;
+        }
+
+        .course-content ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .course-content ul li::before {
+            content: "♪";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        /* Senior Section */
+        .senior-section {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 20px;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+            margin: 80px 0;
+            box-shadow: 0 20px 50px rgba(142, 68, 173, 0.4);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .senior-section.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .senior-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" fill="white" opacity="0.05">♫</text></svg>');
+            background-size: 200px;
+            z-index: 0;
+        }
+
+        .senior-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .senior-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .senior-content p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Teacher Section */
+        .teacher-section {
+            text-align: center;
+        }
+
+        .teacher-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .teacher-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .teacher-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .teacher-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            border: 5px solid var(--card-bg);
+            box-shadow: 0 10px 30px var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .teacher-photo::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            z-index: -1;
+            border-radius: 50%;
+            animation: rotate 6s linear infinite;
+        }
+
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .teacher-name {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .teacher-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .teacher-bio {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            font-size: 1.6rem;
+            margin-top: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(142, 68, 173, 0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+        }
+
+        /* Location Section */
+        .location-section {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 70px 60px;
+            box-shadow: 0 15px 40px var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .location-section.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .address {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            padding-left: 30px;
+            border-left: 4px solid var(--primary);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px var(--shadow);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0 40px;
+            position: relative;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" fill="white" opacity="0.1">♫</text></svg>');
+            background-size: 300px;
+            z-index: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-logo span {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .footer-info {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 400px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(142, 68, 173, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(142, 68, 173, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(142, 68, 173, 0);
+            }
+        }
+
+        @keyframes rotateNote {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .hero h1 span {
+                font-size: 4rem;
+            }
+            .hero-image {
+                width: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                box-shadow: 0 10px 30px var(--shadow);
+            }
+            nav ul.active {
+                transform: translateY(0);
+            }
+            nav ul li {
+                margin: 15px 0;
+            }
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+            }
+            .hero-content {
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero h1 span {
+                font-size: 3.5rem;
+            }
+            .hero-image {
+                display: none;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .senior-section, .location-section {
+                padding: 50px 30px;
+            }
+            .teacher-card {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero h1 span {
+                font-size: 3rem;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            .teacher-name {
+                font-size: 1.9rem;
+            }
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo-container">
+                <div class="logo"></div>
+                <div class="logo-text">East & West <span>Music</span></div>
+            </a>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#teacher">Teacher</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <!-- Floating musical notes -->
+        <div class="floating-note" style="top: 20%; left: 10%;">♫</div>
+        <div class="floating-note" style="top: 40%; left: 5%;">♪</div>
+        <div class="floating-note" style="top: 70%; left: 15%;">♬</div>
+        <div class="floating-note" style="top: 30%; right: 20%;">♩</div>
+        <div class="floating-note" style="top: 60%; right: 15%;">♪</div>
+        <div class="floating-note" style="top: 80%; right: 10%;">♫</div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Your <span>Voice</span></h1>
+                <p>East & West Music Academy provides professional vocal training for all ages. Specializing in Bollywood and light music genres since 1951.</p>
+                <div class="hero-buttons">
+                    <a href="#courses" class="btn btn-primary">Explore Courses</a>
+                    <a href="#contact" class="btn btn-secondary">Book a Class</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="var(--primary)" d="M42.1,-63.3C54.3,-56.6,63.9,-43.7,68.9,-29.2C73.9,-14.6,74.3,1.6,70.9,16.1C67.5,30.6,60.3,43.3,50.4,53.5C40.5,63.7,27.9,71.4,14.6,73.9C1.3,76.4,-12.8,73.7,-25.8,68.2C-38.8,62.7,-50.8,54.4,-59.2,43.3C-67.6,32.2,-72.5,18.3,-73.8,3.9C-75.1,-10.5,-72.8,-25.5,-66.2,-38.1C-59.7,-50.7,-48.9,-60.9,-36.2,-67.3C-23.5,-73.7,-8.9,-76.2,4.6,-82.5C18.1,-88.8,29.9,-99,42.1,-63.3Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Courses</h2>
+                <p class="section-subtitle">Professional vocal training programs designed for all skill levels and age groups</p>
+            </div>
+            <div class="courses-container">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Vocal Training</h3>
+                        <p>Master the art of singing with our comprehensive vocal training program.</p>
+                        <ul>
+                            <li>Bollywood music genres</li>
+                            <li>Light classical music</li>
+                            <li>Breathing techniques</li>
+                            <li>Voice modulation</li>
+                            <li>Stage performance</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Online Classes</h3>
+                        <p>Learn from anywhere with our interactive online sessions.</p>
+                        <ul>
+                            <li>Live interactive classes</li>
+                            <li>Personalized feedback</li>
+                            <li>Flexible scheduling</li>
+                            <li>Access to resources</li>
+                            <li>Recorded sessions</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Offline Classes</h3>
+                        <p>Traditional classroom experience with personal attention.</p>
+                        <ul>
+                            <li>In-person instruction</li>
+                            <li>Group sessions</li>
+                            <li>Performance opportunities</li>
+                            <li>Academy facilities</li>
+                            <li>Peer learning</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Senior Section -->
+    <section class="senior-section">
+        <div class="container">
+            <div class="senior-content">
+                <h2>Special Course for Senior Citizens</h2>
+                <p>We believe music has no age limit. Our specialized program for senior citizens is designed to provide a joyful, engaging, and stress-free learning experience. Tailored to suit your pace and preferences, these classes focus on:</p>
+                <ul>
+                    <li>Gentle vocal exercises</li>
+                    <li>Classic melodies and golden oldies</li>
+                    <li>Group singing sessions</li>
+                    <li>Breathing and relaxation techniques</li>
+                    <li>Community performances</li>
+                </ul>
+                <p>Rediscover your love for music in a supportive and friendly environment. New batches starting soon!</p>
+                <a href="#contact" class="btn btn-secondary" style="margin-top: 30px;">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teacher Section -->
+    <section class="teacher-section" id="teacher">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Expert Teacher</h2>
+                <p class="section-subtitle">Learn from the best in the industry</p>
+            </div>
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Mohit Shinde">
+                </div>
+                <h3 class="teacher-name">Mohit Shinde</h3>
+                <p class="teacher-title">Lead Vocal Coach & Academy Director</p>
+                <p class="teacher-bio">With over 15 years of professional singing and teaching experience, Mohit Shinde specializes in Bollywood and light music genres. His teaching methodology focuses on developing each student's unique vocal qualities while building strong technical foundations.</p>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i> 9021817579
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Location</h2>
+                <p class="section-subtitle">Visit our academy for a personalized experience</p>
+            </div>
+            <div class="address">
+                <p><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> <strong>Laxmiprabha Society</strong></p>
+                <p>Opposite NMC Garden, D'souza colony</p>
+                <p>College Road, Nashik</p>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                    <p>Laxmiprabha Society, College Road, Nashik</p>
+                    <p style="margin-top: 15px; font-size: 1.2rem;">Visit us at our conveniently located academy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">East & West <span>Music Academy</span></div>
+                    <p class="footer-info">Musicating People, Since 1951</p>
+                    <p class="footer-info">Providing quality vocal training for generations with passion and dedication.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 25px; color: white;">Contact Information</h3>
+                    <p><i class="fas fa-phone-alt"></i> 9021817579 (Mohit Shinde)</p>
+                    <p><i class="fas fa-envelope"></i> contact@eastwestmusic.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> College Road, Nashik</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 25px; color: white;">New Batches</h3>
+                    <p>Join our upcoming batches for vocal training in Bollywood and light genres. Limited seats available!</p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 25px; background: white; color: var(--primary);">Enroll Now</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 East & West Music Academy. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+            
+            // Save theme preference
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+        
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.querySelector('i').classList.add('fa-bars');
+                        mobileToggle.querySelector('i').classList.remove('fa-times');
+                    }
+                }
+            });
+        });
+        
+        // Floating notes animation
+        const notes = document.querySelectorAll('.floating-note');
+        notes.forEach((note, index) => {
+            // Set random animation duration
+            const duration = 6 + Math.random() * 4;
+            note.style.animationDuration = `${duration}s`;
+            
+            // Set random delay
+            const delay = Math.random() * 5;
+            note.style.animationDelay = `${delay}s`;
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.course-card, .senior-section, .teacher-card, .location-section');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.85) {
+                    element.classList.add('animate');
+                }
+            });
+        };
+        
+        // Initial check on load
+        animateOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Course card hover effect
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Button hover effect enhancement
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-5px)';
+                button.style.boxShadow = '0 15px 25px rgba(0,0,0,0.2)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+                button.style.boxShadow = '0 10px 20px rgba(142, 68, 173, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
