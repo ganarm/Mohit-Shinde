@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East & West Music Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .flyer-container {
+            width: 8.5in;
+            height: 11in;
+            background: linear-gradient(145deg, rgba(22, 28, 36, 0.95), rgba(32, 40, 51, 0.98));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            position: relative;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            width: 60%;
+        }
+        
+        .watermark img {
+            width: 100%;
+            filter: grayscale(100%) brightness(200%);
+        }
+        
+        .header {
+            padding: 25px 40px 10px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            color: #ffd700;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        .instruments {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            height: 120px;
+        }
+        
+        .instrument {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .instrument:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+        }
+        
+        .instrument img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .content {
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+            height: 45%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .presents {
+            font-size: 1.6rem;
+            color: #ffd700;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+        
+        .classes {
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 8px;
+            border-radius: 8px;
+            grid-column: span 2;
+            margin-bottom: 5px;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3 i {
+            margin-right: 8px;
+            font-size: 1.4rem;
+        }
+        
+        .info-card p {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: #e0e0e0;
+            flex-grow: 1;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, rgba(173, 126, 0, 0.25), rgba(255, 215, 0, 0.15));
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            grid-column: span 2;
+            margin: 5px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .highlight h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            color: #ffd700;
+        }
+        
+        .highlight p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .contact-bar {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 15%;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50px;
+            font-size: 1.3rem;
+        }
+        
+        .contact-info i {
+            color: #ffd700;
+            font-size: 1.4rem;
+        }
+        
+        .location {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(5px);
+            grid-column: span 2;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        .location h3 {
+            font-size: 1.2rem;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .location p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+        
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #0f2027;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Print-specific styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                display: block;
+            }
+            
+            .flyer-container {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                width: 100%;
+                height: 100%;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .print-button {
+                display: none;
+            }
+            
+            .watermark {
+                opacity: 0.1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <div class="watermark">
+            <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bXVzaWMgbG9nb3x8fHx8fDE3MTY2OTYzMTI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" alt="Music Academy Logo">
+        </div>
+        
+        <div class="header">
+            <div class="logo">East & West</div>
+            <div class="tagline">Music Academy</div>
+            
+            <div class="instruments">
+                <div class="instrument">
+                    <img src="https://images.unsplash.com/photo-1517232115160-ff93364542dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8c2l0YXJ8fHx8fHwxNzE2NzAwMzgy&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" alt="Sitar">
+                </div>
+                <div class="instrument">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGFibGF8fHx8fHwxNzE2NzAwNDA0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" alt="Tabla">
+                </div>
+                <div class="instrument">
+                    <img src="https://images.unsplash.com/photo-1541689592655-f5f52825a3b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8aW5kaWFuIG11c2ljfHx8fHx8MTcxNjcwMDM1Mg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" alt="Harmonium">
+                </div>
+                <div class="instrument">
+                    <img src="https://images.unsplash.com/photo-1593111774240-d529f12e7d2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Zmx1dGV8fHx8fHwxNzE2NzA0MDk0&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" alt="Flute">
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="presents">Professional Vocal Training</div>
+            <div class="classes">New Batches Starting Soon!</div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-music"></i> Vocal Training</h3>
+                <p>Bollywood & Light Genres</p>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-user-friends"></i> Special Course</h3>
+                <p>For Senior Citizens</p>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-calendar-alt"></i> Flexible Timing</h3>
+                <p>Online & Offline Classes</p>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-graduation-cap"></i> Expert Training</h3>
+                <p>Personalized Coaching</p>
+            </div>
+            
+            <div class="highlight">
+                <h2>Quality Vocal Training</h2>
+                <p>Since 1951</p>
+            </div>
+            
+            <div class="location">
+                <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                <p>Laxmiprabha Society, Opposite NMC Garden, D'souza colony, College Road, Nashik</p>
+            </div>
+        </div>
+        
+        <div class="contact-bar">
+            <div class="contact-info">
+                <i class="fas fa-user"></i>
+                <span>Mohit Shinde +91 90218 17579</span>
+            </div>
+        </div>
+    </div>
+    
+    <button class="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i> Print Flyer
+    </button>
+</body>
+</html>
